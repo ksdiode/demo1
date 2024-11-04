@@ -25,7 +25,7 @@ jobs:
 
       # 현재 시간 가져오기
       - name: Get current time
-        uses: 1466587594/get-current-time@v2.0.2
+        uses: josStorer/get-current-time@v2
         id: current-time
         with:
           format: YYYY-MM-DDTHH-mm-ss
@@ -46,3 +46,5 @@ jobs:
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: ./build/libs/${{env.artifact}}
+          # 배포 후 환경 복구 대기 시간(초): 300 = 5분
+          wait_for_environment_recovery: 300
